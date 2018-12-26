@@ -5,7 +5,9 @@
     <div class="home">
         <Row>
             <Col :span="6">
-                <Card title="新闻1"></Card>
+                <Card title="新闻1">
+
+                </Card>
             </Col>
             <Col :span="6">
                 <Card title="新闻1"></Card>
