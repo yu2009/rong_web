@@ -1,0 +1,10 @@
+遗留问题:
+    1  "less": "^3.9.0"  引入 iview/src/styles/index.less 报错,目前只有 2.7.3可以
+        解決：vue.config.js 中加上如下配置
+              css: {
+                    loaderOptions: {
+                        less: {
+                            javascriptEnabled: true,
+                        }
+                    }
+                }
