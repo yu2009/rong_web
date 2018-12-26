@@ -26,7 +26,7 @@
                         </Input>
                     </FormItem>
                     <FormItem>
-                        <Button @click="handleSubmit" type="primary" long>登录</Button>
+                        <Button @click="handleSubmit('loginForm')" type="primary" long>登录</Button>
                     </FormItem>
                 </Form>
             </Card>
@@ -54,8 +54,15 @@
             };
         },
         methods: {
-            handleSubmit () {
-                window.location.href = '/';
+            handleSubmit (name) {
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$Message.success('Success!');
+                        this.$router.push('article');
+                    } else {
+                        this.$Message.error('Fail!');
+                    }
+                });
             }
         }
     };

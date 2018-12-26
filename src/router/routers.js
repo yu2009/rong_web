@@ -1,11 +1,45 @@
+import adminIndex from '@/views/admin-web/admin-index';
+
 export default [
     {
-        path: '/',
-        name: 'home',
-        mate: {
-            title: '首页'
+        path: '/admin',
+        name: '_admin',
+        redirect: '/admin/article-manager',
+        component: adminIndex,
+        children: [
+            {
+                path: 'article-manager',
+                name: 'article-manager',
+                meta: {
+                    title: '文章管理'
+                },
+                component: () => import('@/views/admin-web/article-manager')
+            },
+            {
+                path: 'article-create/:id?',
+                name: 'article-create',
+                meta: {
+                    title: '文章创建'
+                },
+                component: () => import('@/views/admin-web/article-create')
+            }
+        ]
+    },
+    {
+        path: '/article',
+        name: 'article',
+        meta: {
+            title: '文章页'
         },
-        component: () => import('@/views/single-page/home')
+        component: () => import('@/views/single-page/article/article')
+    },
+    {
+        path: '/article-details/:id',
+        name: 'article-details',
+        meta: {
+            title: '文章详情'
+        },
+        component: () => import('@/views/single-page/article/article-details')
     },
     {
         path: '/login',
@@ -18,7 +52,7 @@ export default [
     {
         path: '/401',
         name: 'error_401',
-        meta: {},
+        meta: {title: ''},
         component: () => import('@/views/error-page/401.vue')
     },
     {
@@ -30,7 +64,7 @@ export default [
     {
         path: '*',
         name: 'error_404',
-        meta: {},
+        meta: {title: 'error_404'},
         component: () => import('@/views/error-page/404.vue')
     }
 ];
