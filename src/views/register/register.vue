@@ -1,17 +1,17 @@
 <style lang="less">
-    @import "./login.less";
+    @import "./register.less";
 </style>
 <template>
-    <div class="login">
-        <div class="login-con">
+    <div class="register">
+        <div class="register-con">
             <!--<div class="logo">-->
             <!--<a href="">-->
             <!--<img src="../../assets/images/logo_2.png" alt="">-->
             <!--</a>-->
             <!--</div>-->
-            <Card title="欢迎登录" :bordered="false">
-                <Form ref="loginForm" :model="formValidate" :rules="ruleValidate"
-                      @keydown.enter.native="handleSubmit('loginForm')">
+            <Card title="欢迎注册" :bordered="false">
+                <Form ref="registerForm" :model="formValidate" :rules="ruleValidate"
+                      @keydown.enter.native="handleSubmit">
                     <FormItem prop="userName">
                         <Input v-model="formValidate.userName" placeholder="请输入用户名">
                             <span slot="prepend">
@@ -27,7 +27,7 @@
                         </Input>
                     </FormItem>
                     <FormItem>
-                        <Button @click="handleSubmit('loginForm')" type="primary" long>登录</Button>
+                        <Button @click="handleSubmit('registerForm')" type="primary" long>注册</Button>
                     </FormItem>
                 </Form>
             </Card>
@@ -36,12 +36,10 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex';
     import axios from 'axios';
-    import Cookies from 'js-cookie';
 
     export default {
-        name: 'LoginForm',
+        name: 'Register',
         data () {
             return {
                 formValidate: {
@@ -59,19 +57,18 @@
             };
         },
         methods: {
-            ...mapActions([
-                'handleLogin'
-            ]),
             handleSubmit (name) {
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        axios.post('http://localhost:3000/api/login', {
+                        axios.post('http://localhost:3000/api/register', {
                             userName: this.formValidate.userName,
                             password: this.formValidate.password
                         }).then((res) => {
                             if (res.data.success) {
-                                Cookies.set('token', res.data.token, {expires: 1});
-                                this.$router.push('article');
+                                this.$Message.success(res.data.message);
+                                setTimeout(() => {
+                                    this.$router.push('login');
+                                }, 2000);
                             } else {
                                 this.$Message.error(res.data.message);
                             }
@@ -88,6 +85,6 @@
 </script>
 <!--
 *author::^_夏流_^
-*describe: 登录
-*2018/12/20 14:46
+*describe:
+*2018/12/27 10:22
 -->

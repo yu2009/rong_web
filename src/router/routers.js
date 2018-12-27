@@ -2,6 +2,14 @@ import adminIndex from '@/views/admin-web/admin-index';
 
 export default [
     {
+        path: '/',
+        name: 'home',
+        meta: {
+            title: '首页'
+        },
+        component: () => import('@/views/single-page/home/home')
+    },
+    {
         path: '/admin',
         name: '_admin',
         redirect: '/admin/article-manager',
@@ -48,6 +56,14 @@ export default [
             title: 'Login - 登录'
         },
         component: () => import('@/views/login/login.vue')
+    },
+    {
+        path: '/register',
+        name: 'register',
+        meta: {
+            title: 'Register - 注册'
+        },
+        component: () => import('@/views/register/register.vue')
     },
     {
         path: '/401',

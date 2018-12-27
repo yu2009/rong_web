@@ -14,22 +14,21 @@ const HOME_NAME = 'home';
 router.beforeEach((to, from, next) => {
     iView.LoadingBar.start();
     const token = getToken();
+    console.log(token);
     if (!token && to.name !== LOGIN_PAGE_NAME) {
         // 未登录且要跳转的页面不是登录页
-        // next({
-        //     name: LOGIN_PAGE_NAME
-        // });
-        next();
+        next({
+            name: LOGIN_PAGE_NAME
+        });
     } else if (!token && to.name === LOGIN_PAGE_NAME) {
         // 未登陆且要跳转的页面是登录页
         next(); // 跳转
-    } else if (token && to.name === LOGIN_PAGE_NAME) {
-        // 已登录且要跳转的页面是登录页
+    } else if (token && (to.name === LOGIN_PAGE_NAME || to.name === 'register')) {
+        // 已登录且要跳转的页面是登录页或者注册页
         next({
             name: HOME_NAME // 跳转到homeName页
         });
     } else {
-        setToken('');
         next();
     }
 });
