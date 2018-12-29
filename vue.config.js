@@ -22,7 +22,7 @@ module.exports = {
         port: 8090, // 端口号
         open: true, //配置自动启动浏览器
         hotOnly: true, // 热更新
-        // proxy: 'http://localhost:3000'
+        proxy: 'http://localhost:3000'
     },
 
     pluginOptions: {
@@ -41,5 +41,5 @@ module.exports = {
 };
 /** 2018/12/24 16:13
  *author::^_夏流_^
- *describe:
+ *describe: 配置
  */

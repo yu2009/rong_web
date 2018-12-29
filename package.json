@@ -1,6 +1,7 @@
 {
   "name": "rong_web",
   "version": "0.1.0",
+  "author": "xialiu<200970170@qq.com>",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
