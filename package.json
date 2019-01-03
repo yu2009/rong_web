@@ -4,7 +4,7 @@
   "author": "xialiu<200970170@qq.com>",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -38,7 +38,11 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "indent": [1, 4],
+      "vue/no-parsing-error": [2, {"x-invalid-end-tag": false}],
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

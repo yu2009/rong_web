@@ -9,9 +9,9 @@
 </template>
 
 <script>
-    export default {
-        name: ''
-    };
+export default {
+    name: ''
+};
 </script>
 <!--
 *author::^_夏流_^

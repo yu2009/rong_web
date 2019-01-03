@@ -36,55 +36,54 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex';
-    import axios from 'axios';
-    import Cookies from 'js-cookie';
+import {mapActions} from 'vuex';
+import axios from '@/api/user';
 
-    export default {
-        name: 'LoginForm',
-        data () {
-            return {
-                formValidate: {
-                    userName: '',
-                    password: ''
-                },
-                ruleValidate: {
-                    userName: [
-                        {required: true, message: '账号不能为空', trigger: 'blur'}
-                    ],
-                    password: [
-                        {required: true, message: '密码不能为空', trigger: 'blur'}
-                    ]
-                }
-            };
-        },
-        methods: {
-            ...mapActions([
-                'handleLogin'
-            ]),
-            handleSubmit (name) {
-                this.$refs[name].validate((valid) => {
-                    if (valid) {
-                        axios.post('http://localhost:3000/api/login', {
-                            userName: this.formValidate.userName,
-                            password: this.formValidate.password
-                        }).then((res) => {
-                            if (res.data.success) {
-                                Cookies.set('token', res.data.token, {expires: 1});
-                                this.$router.push('article');
-                            } else {
-                                this.$Message.error(res.data.message);
-                            }
-                        }).catch((error) => {
-                            console.log(error);
-                        });
-                    } else {
-                        this.$Message.error('Fail!');
-                    }
-                });
+export default {
+    name: 'LoginForm',
+    data () {
+        return {
+            formValidate: {
+                userName: '',
+                password: ''
+            },
+            ruleValidate: {
+                userName: [
+                    {required: true, message: '账号不能为空', trigger: 'blur'}
+                ],
+                password: [
+                    {required: true, message: '密码不能为空', trigger: 'blur'}
+                ]
             }
+        };
+    },
+    methods: {
+        ...mapActions([
+            'handleLogin'
+        ]),
+        handleSubmit (name) {
+            this.$refs[name].validate((valid) => {
+                if (valid) {
+                    axios.handleLogin(this.formValidate).then(res => {
+                        console.log(res);
+                        if (res.data.success) {
+                            this.$store.dispatch('handleLogin', res.data.token);
+                            this.$router.push({
+                                name: this.$config.homeName
+                            });
+                        } else {
+                            this.$Message.error(res.data.message);
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                } else {
+                    this.$Message.error('Fail!');
+                }
+            });
         }
-    };
+    }
+};
 </script>
 <!--
 *author::^_夏流_^

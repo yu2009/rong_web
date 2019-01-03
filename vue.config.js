@@ -19,10 +19,20 @@ module.exports = {
 
     // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
     devServer: {
-        port: 8090, // 端口号
+        host: '127.0.0.1',
+        port: 9080, // 端口号
         open: true, //配置自动启动浏览器
         hotOnly: true, // 热更新
-        proxy: 'http://localhost:3000'
+        proxy: {
+            '/api': {
+                target: 'http://rong.helptechltd.com', // http://localhost:3000/
+                changeOrigin: true,
+                ws: true,
+                pathRewrite: {
+                    '^/api': '/'
+                }
+            }
+        }
     },
 
     pluginOptions: {

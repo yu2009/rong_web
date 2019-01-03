@@ -17,9 +17,9 @@
 </template>
 
 <script>
-    export default {
-        name: 'articleDetails'
-    };
+export default {
+    name: 'articleDetails'
+};
 </script>
 <!--
 *author::^_夏流_^

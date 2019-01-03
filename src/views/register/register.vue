@@ -36,52 +36,52 @@
 </template>
 
 <script>
-    import axios from 'axios';
+import axios from 'axios';
 
-    export default {
-        name: 'Register',
-        data () {
-            return {
-                formValidate: {
-                    userName: '',
-                    password: ''
-                },
-                ruleValidate: {
-                    userName: [
-                        {required: true, message: '账号不能为空', trigger: 'blur'}
-                    ],
-                    password: [
-                        {required: true, message: '密码不能为空', trigger: 'blur'}
-                    ]
-                }
-            };
-        },
-        methods: {
-            handleSubmit (name) {
-                this.$refs[name].validate((valid) => {
-                    if (valid) {
-                        axios.post('http://localhost:3000/api/register', {
-                            userName: this.formValidate.userName,
-                            password: this.formValidate.password
-                        }).then((res) => {
-                            if (res.data.success) {
-                                this.$Message.success(res.data.message);
-                                setTimeout(() => {
-                                    this.$router.push('login');
-                                }, 2000);
-                            } else {
-                                this.$Message.error(res.data.message);
-                            }
-                        }).catch((error) => {
-                            console.log(error);
-                        });
-                    } else {
-                        this.$Message.error('Fail!');
-                    }
-                });
+export default {
+    name: 'Register',
+    data () {
+        return {
+            formValidate: {
+                userName: '',
+                password: ''
+            },
+            ruleValidate: {
+                userName: [
+                    {required: true, message: '账号不能为空', trigger: 'blur'}
+                ],
+                password: [
+                    {required: true, message: '密码不能为空', trigger: 'blur'}
+                ]
             }
+        };
+    },
+    methods: {
+        handleSubmit (name) {
+            this.$refs[name].validate((valid) => {
+                if (valid) {
+                    axios.post('http://localhost:3000/api/register', {
+                        userName: this.formValidate.userName,
+                        password: this.formValidate.password
+                    }).then((res) => {
+                        if (res.data.success) {
+                            this.$Message.success(res.data.message);
+                            setTimeout(() => {
+                                this.$router.push('login');
+                            }, 2000);
+                        } else {
+                            this.$Message.error(res.data.message);
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                } else {
+                    this.$Message.error('Fail!');
+                }
+            });
         }
-    };
+    }
+};
 </script>
 <!--
 *author::^_夏流_^

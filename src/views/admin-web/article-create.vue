@@ -30,24 +30,24 @@
 </template>
 
 <script>
-    export default {
-        name: '',
-        data () {
-            return {
-                formValidate: {
-                    title: '',
-                    author: '',
-                    comment: '1',
-                    content: ''
-                },
-                ruleValidate: {
-                    title: [{required: true, message: '请输入文章标题', trigger: 'blur'}],
-                    content: [{required: true, message: '文章内容不能为空', trigger: 'blur'},
-                        {type: 'string', min: 20, message: '文章内容不能少于20个字符', trigger: 'blur'}]
-                }
-            };
-        }
-    };
+export default {
+    name: '',
+    data () {
+        return {
+            formValidate: {
+                title: '',
+                author: '',
+                comment: '1',
+                content: ''
+            },
+            ruleValidate: {
+                title: [{required: true, message: '请输入文章标题', trigger: 'blur'}],
+                content: [{required: true, message: '文章内容不能为空', trigger: 'blur'},
+                    {type: 'string', min: 20, message: '文章内容不能少于20个字符', trigger: 'blur'}]
+            }
+        };
+    }
+};
 </script>
 <!--
 *author::^_夏流_^

@@ -1,5 +1,4 @@
-import axios from 'axios';
-import {setToken, getToken} from '../../utils';
+import {setToken, getToken} from '@/utils';
 
 export default {
     state: {
@@ -34,20 +33,9 @@ export default {
         /*
         * 登录
         * */
-        handleLogin ({commit}, {userName, password}) {
-            userName = userName.trim();
-            return new Promise((resolve, reject) => {
-                axios.post('/api/login', {
-                    userName: userName,
-                    password: password
-                }).then((res) => {
-                    const data = res.data;
-                    commit('setToken', data.token);
-                    resolve();
-                }).catch((error) => {
-                    reject(error);
-                });
-            });
+        handleLogin ({commit}, token) {
+            console.log(token);
+            commit('setToken', token);
         }
     }
 };
