@@ -4,6 +4,10 @@ export default {
     /*用户登录*/
     handleLogin (params) {
         return instance.post('/test/login', params);
+    },
+    /*验证码短信*/
+    sendSms (params) {
+        return instance.post('/test/sms', params);
     }
 };
 /** 2018/12/26 17:25
