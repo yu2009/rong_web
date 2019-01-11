@@ -39,6 +39,9 @@
 .login-con .ivu-card .ivu-card-body {
   padding: 20px 70px;
 }
+.login-con .ivu-card .ivu-card-body .ivu-input-group-prepend {
+  padding: 6px 12px;
+}
 .login-con .ivu-card .ivu-card-body .login-register-frame {
   text-align: center;
 }
@@ -54,12 +57,15 @@
 .login-con .ivu-card .ivu-card-body .powered-by {
   text-align: center;
 }
-.login-con .ivu-card .ivu-card-body .ivu-input-suffix {
+.login-con .ivu-card .ivu-card-body .ivu-input-wrapper-large .ivu-input-suffix i .ivu-input-suffix {
   display: inline-block;
   width: auto;
   height: auto;
   top: 4px;
   right: 5px;
   z-index: 5;
+}
+.login-con .ivu-card .ivu-card-body .ivu-input-wrapper-large .ivu-input-suffix i .ivu-input-suffix .ivu-btn {
+  width: 100px;
 }
 /*# sourceMappingURL=login.css.map */

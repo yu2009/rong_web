@@ -3,14 +3,17 @@
 </style>
 
 <template>
-    <div class="article-manager">
-        <Table :columns="columns1" :data="listData"></Table>
-    </div>
+  <div class="article-manager">
+    <Table
+      :columns="columns1"
+      :data="listData"
+    />
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'articleManager',
+    name: 'ArticleManager',
     data () {
         return {
             columns1: [

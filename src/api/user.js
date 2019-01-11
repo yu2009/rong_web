@@ -1,9 +1,17 @@
 import instance from '@/utils/axios';
 
 export default {
+    /*查询手机号是否被注册*/
+    queryPhone (phoneNumber) {
+        return instance.post('/test/queryPhone', phoneNumber);
+    },
     /*用户登录*/
     handleLogin (params) {
         return instance.post('/test/login', params);
+    },
+    /*用户注册*/
+    handleRegister (params) {
+        return instance.post('/test/register', params);
     },
     /*验证码短信*/
     sendSms (params) {

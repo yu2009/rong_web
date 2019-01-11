@@ -3,9 +3,9 @@
 </style>
 
 <template>
-    <div class="">
-        我就是首页
-    </div>
+  <div class="">
+    我就是首页
+  </div>
 </template>
 
 <script>

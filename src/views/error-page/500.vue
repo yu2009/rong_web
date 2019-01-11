@@ -4,9 +4,9 @@
 *2018/12/24 16:59
 -->
 <template>
-    <div class="">
-        500
-    </div>
+  <div class="">
+    500
+  </div>
 </template>
 
 <script>

@@ -58,10 +58,11 @@ export default [
         component: () => import('@/views/login/login.vue')
     },
     {
-        path: '/register',
+        path: '/register/:id',
         name: 'register',
         meta: {
-            title: 'Register - 注册'
+            title: 'Register - 注册',
+            requiresAuth: true
         },
         component: () => import('@/views/register/register.vue')
     },

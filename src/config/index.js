@@ -17,7 +17,7 @@ export default {
      * @description api请求基础路径
      */
     baseUrl: {
-        serve: 'http://rong.helptechltd.com',
+        serve: 'http://localhost:3000', // http://rong.helptechltd.com
         pro: 'http://rong.helptechltd.com'
     },
     /**

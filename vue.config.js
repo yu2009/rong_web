@@ -6,7 +6,7 @@ const resolve = dir => {
 const BASE_URL = process.env.NODE_ENV === 'production' ? '/' : '/';
 module.exports = {
     baseUrl: BASE_URL,
-    lintOnSave: true,
+    lintOnSave: undefined,
 
     chainWebpack: config => {
         config.resolve.alias

@@ -2,42 +2,45 @@
     @import "./article.less";
 </style>
 <template>
-    <div class="article">
-        <Row :gutter="20" class="article-list-wrap">
-            <Col :span="6">
-                <a href="/article-details/123">
-                    <Card title="新闻1">
-                        内容啊啊啊啊啊啊
-                    </Card>
-                </a>
-            </Col>
-            <Col :span="6">
-                <Card title="新闻1">
-                    内容啊啊啊啊啊啊
-                </Card>
-            </Col>
-            <Col :span="6">
-                <Card title="新闻1">
-                    内容啊啊啊啊啊啊
-                </Card>
-            </Col>
-            <Col :span="6">
-                <Card title="新闻1">
-                    内容啊啊啊啊啊啊
-                </Card>
-            </Col>
-            <Col :span="6">
-                <Card title="新闻1">
-                    内容啊啊啊啊啊啊
-                </Card>
-            </Col>
-            <Col :span="6">
-                <Card title="新闻1">
-                    内容啊啊啊啊啊啊
-                </Card>
-            </Col>
-        </Row>
-    </div>
+  <div class="article">
+    <Row
+      :gutter="20"
+      class="article-list-wrap"
+    >
+      <Col :span="6" />
+      <a href="/article-details/123">
+        <Card title="新闻1">
+          内容啊啊啊啊啊啊
+        </Card>
+      </a>
+      </Col>
+      <Col :span="6" />
+      <Card title="新闻1">
+        内容啊啊啊啊啊啊
+      </Card>
+      </Col>
+      <Col :span="6" />
+      <Card title="新闻1">
+        内容啊啊啊啊啊啊
+      </Card>
+      </Col>
+      <Col :span="6" />
+      <Card title="新闻1">
+        内容啊啊啊啊啊啊
+      </Card>
+      </Col>
+      <Col :span="6" />
+      <Card title="新闻1">
+        内容啊啊啊啊啊啊
+      </Card>
+      </Col>
+      <Col :span="6" />
+      <Card title="新闻1">
+        内容啊啊啊啊啊啊
+      </Card>
+      </Col>
+    </Row>
+  </div>
 </template>
 
 <script>
