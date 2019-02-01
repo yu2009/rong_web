@@ -18,6 +18,7 @@ instance.interceptors.request.use(config => {
     }
     return config;
 }, error => {
+    console.log(error);
     return Promise.reject(error);
 });
 // 添加响应拦截器

@@ -7,7 +7,17 @@ export default [
         meta: {
             title: '首页'
         },
-        component: () => import('@/views/single-page/home/home')
+        component: () => import('@/views/single-page/home/home'),
+        children: [
+            {
+                path: 'publish-article',
+                name: 'publish-article',
+                meta: {
+                    title: '发布文章'
+                },
+                component: () => import('@/views/single-page/article/publish-article')
+            }
+        ]
     },
     {
         path: '/admin',

@@ -9,19 +9,19 @@ export default {
         access: ''
     },
     mutations: {
-        setAvator (state, avatorPath) {
+        setAvator(state, avatorPath) {
             state.avatorImgPath = avatorPath;
         },
-        setUserId (state, id) {
+        setUserId(state, id) {
             state.userId = id;
         },
-        setUserName (state, name) {
+        setUserName(state, name) {
             state.userName = name;
         },
-        setAccess (state, access) {
+        setAccess(state, access) {
             state.access = access;
         },
-        setToken (state, token) {
+        setToken(state, token) {
             state.token = token;
             setToken(token);
         }
@@ -33,9 +33,14 @@ export default {
         /*
         * 登录
         * */
-        handleLogin ({commit}, token) {
-            console.log(token);
+        handleLogin({commit}, token) {
             commit('setToken', token);
+        },
+        /*
+        * 退出登录
+        * */
+        handleLogout({commit}) {
+            commit('setToken', '')
         }
     }
 };

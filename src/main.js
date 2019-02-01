@@ -2,8 +2,10 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import iView from 'iview';
 import config from '@/config';
+// import tinymce from 'tinymce';
+//
+// window.tinymce = tinymce;
 import './index.less';
 
 /**
@@ -14,7 +16,6 @@ Vue.prototype.$config = config;
  * @description 生产环境关掉提示
  */
 Vue.config.productionTip = false;
-Vue.use(iView);
 new Vue({
     router,
     store,

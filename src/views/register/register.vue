@@ -1,5 +1,5 @@
 <style lang="less">
-    @import "../login/login.less";
+@import "../login/login.less";
 </style>
 <template>
   <div class="login">
@@ -24,8 +24,7 @@
               size="large"
               :maxlength="11"
               clearable
-              placeholder="手机号"
-            />
+              placeholder="手机号">
             <span slot="prepend">
               <Icon
                 :size="16"
@@ -38,8 +37,7 @@
             <Input
               v-model="formValidate.verificationCode"
               size="large"
-              placeholder="验证码"
-            />
+              placeholder="验证码">
             <span slot="prepend">
               <Icon
                 :size="16"
@@ -63,8 +61,7 @@
               v-model="formValidate.password"
               size="large"
               type="password"
-              placeholder="密码"
-            />
+              placeholder="密码">
             <span slot="prepend">
               <Icon
                 :size="16"
@@ -83,22 +80,7 @@
               {{ $route.params.id === '1' ? '注册' : '找回' }}
             </Button>
           </FormItem>
-          <FormItem
-            v-if="$route.params.id === '1'"
-            class="login-register-frame"
-          >
-            <Button
-              type="text"
-              ghost
-              to="/login"
-            >
-              登录账号
-            </Button>
-          </FormItem>
-          <FormItem
-            v-if="$route.params.id === '2'"
-            class="login-register-frame"
-          >
+          <FormItem class="login-register-frame">
             <Button
               type="text"
               ghost
@@ -107,6 +89,7 @@
               登录账号
             </Button>
             <Button
+              v-if="$route.params.id === '2'"
               type="text"
               ghost
               to="/register/1"
@@ -125,10 +108,20 @@
 
 <script>
 import axios from '@/api/user';
+import {Form, FormItem, Card, Button, Input, Icon, Message} from 'iview';
 
 export default {
     name: 'Register',
-    data () {
+    components: {
+        Form,
+        FormItem,
+        Card,
+        Button,
+        Input,
+        Icon,
+        Message
+    },
+    data() {
         const validatePhone = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error('手机号码不能为空'));
@@ -177,14 +170,14 @@ export default {
     },
     methods: {
         /*
-                 * 发送验证码
-                 * */
-        endVerification () {
+         * 发送验证码
+         * */
+        endVerification() {
             this.btn_loading = true;
             axios.sendSms(this.formValidate).then(res => {
                 if (res.data.success) {
                     this.btn_loading = false;
-                    this.$Message.success(res.data.message);
+                    Message.success(res.data.message);
                     if (!this.interval) {  // 倒计时
                         this.showCountdown = true;
                         this.interval = setInterval(() => {
@@ -199,29 +192,29 @@ export default {
                         }, 1000);
                     }
                 } else {
-                    this.$Message.error(res.data.message);
+                    Message.error(res.data.message);
                     this.btn_loading = false;
                 }
             }).catch(error => {
                 console.log(error);
                 this.btn_loading = false;
-                this.$Message.error('异常错误!');
+                Message.error('异常错误!');
             });
         },
         /*
-                 * 注册提交
-                 * */
-        registerSubmit (name) {
+         * 注册提交
+         * */
+        registerSubmit(name) {
             this.$refs[name].validate((valid) => {
                 if (valid) {
                     axios.handleRegister(this.formValidate).then(res => {
                         if (res.data.success) {
-                            this.$Message.success(res.data.message);
+                            Message.success(res.data.message);
                             this.$router.push({
                                 name: 'login'
                             });
                         } else {
-                            this.$Message.error(res.data.message);
+                            Message.error(res.data.message);
                         }
                     }).catch(error => {
                         console.log(error);

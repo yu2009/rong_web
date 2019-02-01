@@ -1,5 +1,5 @@
 <style lang="less">
-    @import "./login.less";
+@import "./login.less";
 </style>
 <template>
   <div class="login">
@@ -29,7 +29,7 @@
                 v-model="formValidate.phoneNumber"
                 size="large"
                 placeholder="用户名或手机号"
-              />
+              >
               <span slot="prepend">
                 <Icon
                   :size="16"
@@ -44,7 +44,7 @@
                 size="large"
                 type="password"
                 placeholder="密码"
-              />
+              >
               <span slot="prepend">
                 <Icon
                   :size="16"
@@ -58,6 +58,7 @@
                 size="large"
                 type="success"
                 long
+                :loading="submit_loading"
                 @click="loginSubmit('loginForm')"
               >
                 登录
@@ -92,12 +93,22 @@
 <script>
 import {mapActions} from 'vuex';
 import axios from '@/api/user';
+import {Card, Button, Form, FormItem, Input, Icon, Message} from 'iview'
 
 export default {
     name: 'LoginForm',
-    data () {
+    components: {
+        Card,
+        Button,
+        Form,
+        FormItem,
+        Input,
+        Icon,
+        Message
+    },
+    data() {
         return {
-            btn_loading: false,
+            submit_loading: false,
             formValidate: {
                 phoneNumber: '',
                 password: ''
@@ -119,23 +130,31 @@ export default {
         /*
             * 登录提交
             * */
-        loginSubmit (name) {
-            this.$refs[name].validate((valid) => {
+        loginSubmit(name) {
+            let _this = this;
+            _this.$refs[name].validate((valid) => {
                 if (valid) {
-                    axios.handleLogin(this.formValidate).then(res => {
+                    _this.submit_loading = true;
+                    axios.handleLogin(_this.formValidate).then(res => {
                         if (res.data.success) {
-                            this.$store.dispatch('handleLogin', res.data.token);
-                            this.$router.push({
-                                name: this.$config.homeName
+                            _this.$store.dispatch('handleLogin', res.data.token);
+                            _this.$router.push({
+                                name: _this.$config.homeName
                             });
                         } else {
-                            this.$Message.error(res.data.message);
+                            Message.error(res.data.message)
                         }
+                        _this.submit_loading = false;
                     }).catch((error) => {
-                        console.log(error);
+                        _this.submit_loading = false;
+                        if (error === undefined) {
+                            Message.error('无法连接到后台接口!')
+                        } else {
+                            Message.error(error)
+                        }
                     });
                 } else {
-                    this.$Message.error('Fail!');
+                    Message.error('请输入账号和密码');
                 }
             });
         }
